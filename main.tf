@@ -46,3 +46,4 @@ resource "azurerm_role_assignment" "storage_blob_data_contributor" {
 #     }
 #   }
 # }
+
