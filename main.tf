@@ -13,9 +13,30 @@ resource "azurerm_storage_account" "main" {
   }
 }
 
-resource "azurerm_role_assignment" "storage_blob_data_contributor" {
+resource "azurerm_role_definition" "main" {
+  name        = "Github Backup"
+  scope       = azurerm_storage_account.main.id
+  description = "This role allows GitHub to backup data to the storage account."
+
+  permissions {
+    actions = [
+      "Microsoft.Storage/storageAccounts/blobServices/containers/read",
+      "Microsoft.Storage/storageAccounts/blobServices/containers/write",
+    ]
+    data_actions = [
+      "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read",
+      "Microsoft.Storage/storageAccounts/blobServices/containers/blobs/write",
+    ]
+  }
+
+  assignable_scopes = [
+    azurerm_storage_account.main.id
+  ]
+}
+
+resource "azurerm_role_assignment" "github_backup" {
   scope                = azurerm_storage_account.main.id
-  role_definition_name = "Storage Blob Data Contributor"
+  role_definition_name = azurerm_role_definition.main.name
   principal_id         = data.azurerm_client_config.current.object_id
 }
 
