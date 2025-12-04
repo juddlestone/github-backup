@@ -19,7 +19,6 @@ resource "azurerm_role_assignment" "storage_blob_data_contributor" {
   principal_id         = data.azurerm_client_config.current.object_id
 }
 
-
 # resource "azurerm_storage_management_policy" "main" {
 #   storage_account_id = azurerm_storage_account.main.id
 
