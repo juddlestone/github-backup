@@ -1,5 +1,10 @@
+module "naming" {
+  source = "Azure/naming/azurerm"
+  suffix = ["github", "backup", "prd"]
+}
+
 resource "azurerm_storage_account" "main" {
-  name                     = var.storage_account_name
+  name                     = module.naming.resource_group.name
   resource_group_name      = data.azurerm_resource_group.this.name
   location                 = data.azurerm_resource_group.this.location
   account_tier             = "Standard"

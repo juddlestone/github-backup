@@ -53,7 +53,6 @@ jobs:
         run: |
           terraform plan -out=tfplan
         env:
-          TF_VAR_storage_account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Upload Plan and Lock File
@@ -102,5 +101,4 @@ jobs:
       - name: Terraform | Apply
         run: terraform apply -auto-approve tfplan
         env:
-          TF_VAR_storage_account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}

@@ -1,0 +1,16 @@
+name: Github Backup
+
+on:
+    schedule:
+        - cron: "0 0 * * *"
+
+jobs:
+  backup:
+    name: Github Backup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Backup Github Repositories
+        run: bash ./scripts/backup.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
