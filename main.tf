@@ -4,7 +4,7 @@ module "naming" {
 }
 
 resource "azurerm_storage_account" "main" {
-  name                     = module.naming.resource_group.name
+  name                     = module.naming.storage_account.name
   resource_group_name      = data.azurerm_resource_group.this.name
   location                 = data.azurerm_resource_group.this.location
   account_tier             = "Standard"
