@@ -54,13 +54,11 @@ function Backup-GithubRepositories {
         try {
             Write-Output  "Backing up repository: $repositoryName"
             
-            # Clone repository
             git clone $repository $repositoryPath 2>&1 | Out-Null
             if ($LASTEXITCODE -ne 0) {
                 throw "Git clone failed"
             }
 
-            # Check if repository is empty
             $repoContents = Get-ChildItem -Path $repositoryPath -Exclude ".git" -ErrorAction SilentlyContinue
             if ($null -eq $repoContents -or $repoContents.Count -eq 0) {
                 Write-Output "Repository $repositoryName is empty, skipping backup"
@@ -71,7 +69,7 @@ function Backup-GithubRepositories {
                 # Compress archive
                 Compress-Archive -Path $repositoryPath -DestinationPath $destinationPath -Force
                 
-                # Get file size
+                # Get size of archive
                 $fileInfo = Get-Item $destinationPath
                 $sizeInMB = [math]::Round($fileInfo.Length / 1MB, 2)
                 $size = "$sizeInMB MB"

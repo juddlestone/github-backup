@@ -1,12 +1,20 @@
 # Github Backup
-This repository contains infrastructure and application code to automatically backup my GitHub repositories to Azure Storage. It provides automated monthly backups, each backup is stored as a compressed archive with retention policies and lifecycle management.
+This repository contains the infrastructure and application code to automatically backup my GitHub repositories every month in a simple manner, and store them in an Azure Storage Account. 
+
+## Latest Backup Status
+
+**Last Run**: %%DATE%%
+
+| Repository | Size | Status |
+|------------|------|--------|
+%%BACKUP_RESULTS%%
 
 ## Infrastructure
 
-The Terraform configuration deploys the following Azure resources:
+I've deployed a three resources via terraform to facilitate this.
 
 ### Storage Account
-- **Name**: Generated using Azure naming conventions 
+- **Name**: Generated using the Azure naming module. 
 - **Tier**: Standard with Zone-Redundant Storage (ZRS)
 - **Security**: Public access disabled, shared access keys disabled
 - **Retention**: 7-day soft delete for blobs and containers
@@ -24,7 +32,7 @@ The Terraform configuration deploys the following Azure resources:
 ## How It Works
 
 ### Workflow Schedule
-The backup process runs automatically on the first of every month at midnight via GitHub Actions. It can also be triggered manually via workflow dispatch.
+The backup process runs automatically at midnight on the first of every month through the `github-backup.yml` workflow. Backups can also be triggered ad-hoc via workflow dispatch.
 
 ### Backup Process
 
@@ -36,24 +44,3 @@ The backup process runs automatically on the first of every month at midnight vi
    - Compressed into a ZIP archive
    - Uploaded to Azure Blob Storage
 5. **Cleanup**: Temporary directories are removed after successful upload
-
-### Storage Structure
-```
-Storage Account
-└── Container (2025-11-01)
-    ├── repo1.zip
-    ├── repo2.zip
-    └── repo3.zip
-└── Container (2025-12-01)
-    ├── repo1.zip
-    ├── repo2.zip
-    └── repo3.zip
-```
-
-## Latest Backup Status
-
-**Last Run**: %%DATE%%
-
-| Repository | Size | Status |
-|------------|------|--------|
-%%BACKUP_RESULTS%%
