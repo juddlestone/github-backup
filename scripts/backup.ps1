@@ -11,6 +11,7 @@ function Backup-GithubRepositories {
     $backupArchivePath = Join-Path -Path (Get-Location) -ChildPath "backup-archives"
     $backupPaths = @($backupPath, $backupArchivePath)
     $date = Get-Date -Format "yyyy-MM-dd"
+    $backupResults = @()
 
 
     # Ensure backup directories exist, create them if they don't
@@ -25,7 +26,6 @@ function Backup-GithubRepositories {
             }
         }
     }
-
 
 
     # Configure git to use GitHub token for authentication
@@ -48,15 +48,56 @@ function Backup-GithubRepositories {
         $repositoryName = [System.IO.Path]::GetFileNameWithoutExtension($repository)
         $repositoryPath = Join-Path -Path $backupPath -ChildPath $repositoryName
         $destinationPath = "$backupArchivePath/$repositoryName.zip"
+        $status = "❌ Failed"
+        $size = "N/A"
 
-        Write-Output  "Backing up repository: $repositoryName"
-        git clone $repository $repositoryPath
-        Compress-Archive -Path $repositoryPath -DestinationPath $destinationPath -Force
+        
+        try {
+            Write-Output  "Backing up repository: $repositoryName"
+            
+            # Clone repository
+            git clone $repository $repositoryPath
+            if ($LASTEXITCODE -ne 0) {
+                throw "Git clone failed"
+            }
 
+            # Compress archive
+            Compress-Archive -Path $repositoryPath -DestinationPath $destinationPath -Force
+            
+            # Get file size
+            $fileInfo = Get-Item $destinationPath
+            $sizeInMB = [math]::Round($fileInfo.Length / 1MB, 2)
+            $size = "$sizeInMB MB"
 
+            # Upload to Azure
+            $backup = @{
+                File             = $destinationPath
+                Container        = $date
+                Blob             = "$repositoryName.zip"
+                Context          = $storageContext
+                StandardBlobTier = 'Hot'
+                Force            = $true
+            }
+            Set-AzStorageBlobContent @backup | Out-Null
+            
+            $status = "✅ Success"
+            Write-Output "Successfully backed up $repositoryName ($size)"
+        }
+        catch {
+            Write-Error "Failed to backup $repositoryName : $_"
+            $status = "❌ Failed"
+        }
+
+        # Add result to tracking array
+        $backupResults += [PSCustomObject]@{
+            Repository = $repositoryName
+            Size       = $size
+            Status     = $status
+        }
     }
 
 
+    # Clean up temporary directories
     $backupPaths | ForEach-Object {
         try { 
             Remove-Item -Path $_ -Recurse -ErrorAction Stop -Force
@@ -64,5 +105,33 @@ function Backup-GithubRepositories {
         } catch {
             Write-Error "Failed to delete directory : $_"
         }
+    }
+
+    # Update README with backup results
+    Write-Output "Updating README.md with backup results"
+    try {
+        $templatePath = Join-Path -Path (Get-Location) -ChildPath "templates/README.md"
+        $readmePath = Join-Path -Path (Get-Location) -ChildPath "README.md"
+        $readmeContent = Get-Content -Path $templatePath -Raw
+        
+        # Replace date placeholder
+        $readmeContent = $readmeContent -replace '%%DATE%%', $date
+        
+        # Build backup results table
+        $tableRows = $backupResults | ForEach-Object {
+            "| $($_.Repository) | $($_.Size) | $($_.Status) |"
+        }
+        $tableContent = $tableRows -join "`n"
+        
+        # Replace backup results placeholder
+        $readmeContent = $readmeContent -replace '%%BACKUP_RESULTS%%', $tableContent
+        
+        # Write updated README
+        Set-Content -Path $readmePath -Value $readmeContent -NoNewline
+        
+        Write-Output "Successfully updated README.md"
+    }
+    catch {
+        Write-Error "Failed to update README.md: $_"
     }
 }
