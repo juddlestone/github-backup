@@ -2,7 +2,9 @@
 function Backup-GithubRepositories {
     Param (
         [Parameter(Mandatory=$true)]
-        [string]$StorageAccountName
+        [string]$StorageAccountName,
+        [Parameter(Mandatory=$true)]
+        [string]$GithubToken
     )
 
 
@@ -17,8 +19,9 @@ function Backup-GithubRepositories {
     $backupPaths | ForEach-Object {
         if (-Not (Test-Path -Path $_)) {
             try { 
+                Write-Output "Creating temporary directory: $_"
                 New-Item -ItemType Directory -Path $_ -ErrorAction Stop | Out-Null
-                Write-Output "Created directory: $_"
+                Write-Output "Success! Directory '$_`' created."
             } catch {
                 Write-Error "Failed to create directory $_`: $_"
             }
@@ -26,9 +29,18 @@ function Backup-GithubRepositories {
     }
 
 
+    # Login to GitHub CLI
+    Write-Output "Logging into GitHub CLI"
+    gh auth login --with-token < $GithubToken
+    Write-Output "Success! Logged into GitHub CLI."
+
+
     # Create blob container for these dates
+    Write-Output "Creating Storage Context"
     $storageContext = New-AzStorageContext -StorageAccountName $StorageAccountName -UseConnectedAccount
+    Write-Output "Creating Blob Container: $date"
     $containerName = New-AzStorageContainer -Name $date -Context $storageContext -Permission Off
+    Write-Output "Success! Blob Container '$date' created."
 
 
     # Fetch list of repositories and back them up
