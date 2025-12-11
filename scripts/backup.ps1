@@ -51,37 +51,45 @@ function Backup-GithubRepositories {
         $status = "❌ Failed"
         $size = "N/A"
 
-        
         try {
             Write-Output  "Backing up repository: $repositoryName"
             
             # Clone repository
-            git clone $repository $repositoryPath
+            git clone $repository $repositoryPath 2>&1 | Out-Null
             if ($LASTEXITCODE -ne 0) {
                 throw "Git clone failed"
             }
 
-            # Compress archive
-            Compress-Archive -Path $repositoryPath -DestinationPath $destinationPath -Force
-            
-            # Get file size
-            $fileInfo = Get-Item $destinationPath
-            $sizeInMB = [math]::Round($fileInfo.Length / 1MB, 2)
-            $size = "$sizeInMB MB"
-
-            # Upload to Azure
-            $backup = @{
-                File             = $destinationPath
-                Container        = $date
-                Blob             = "$repositoryName.zip"
-                Context          = $storageContext
-                StandardBlobTier = 'Hot'
-                Force            = $true
+            # Check if repository is empty
+            $repoContents = Get-ChildItem -Path $repositoryPath -Exclude ".git" -ErrorAction SilentlyContinue
+            if ($null -eq $repoContents -or $repoContents.Count -eq 0) {
+                Write-Output "Repository $repositoryName is empty, skipping backup"
+                $status = "⚠️ Empty"
+                $size = "0 MB"
             }
-            Set-AzStorageBlobContent @backup | Out-Null
-            
-            $status = "✅ Success"
-            Write-Output "Successfully backed up $repositoryName ($size)"
+            else {
+                # Compress archive
+                Compress-Archive -Path $repositoryPath -DestinationPath $destinationPath -Force
+                
+                # Get file size
+                $fileInfo = Get-Item $destinationPath
+                $sizeInMB = [math]::Round($fileInfo.Length / 1MB, 2)
+                $size = "$sizeInMB MB"
+
+                # Upload to Azure
+                $backup = @{
+                    File             = $destinationPath
+                    Container        = $date
+                    Blob             = "$repositoryName.zip"
+                    Context          = $storageContext
+                    StandardBlobTier = 'Hot'
+                    Force            = $true
+                }
+                Set-AzStorageBlobContent @backup | Out-Null
+                
+                $status = "✅ Success"
+                Write-Output "Successfully backed up $repositoryName ($size)"
+            }
         }
         catch {
             Write-Error "Failed to backup $repositoryName : $_"
