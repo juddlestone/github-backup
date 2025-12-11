@@ -27,10 +27,11 @@ function Backup-GithubRepositories {
     }
 
 
-    # Login to GitHub CLI
-    Write-Output "Logging into GitHub CLI"
-    gh auth login --with-token
-    Write-Output "Success! Logged into GitHub CLI."
+
+    # Configure git to use GitHub token for authentication
+    Write-Output "Configuring git to use GitHub token for authentication"
+    $ghToken = $env:GH_TOKEN
+    git config --global url."https://oauth2:${ghToken}@github.com/".insteadOf "https://github.com/"
 
 
     # Create blob container for these dates
