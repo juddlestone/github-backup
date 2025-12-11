@@ -2,7 +2,7 @@
 function Backup-GithubRepositories {
     Param (
         [Parameter(Mandatory=$true)]
-        [string]$StorageAccountName,
+        [string]$StorageAccountName
     )
 
 
