@@ -13,8 +13,20 @@ resource "azurerm_storage_account" "main" {
   allow_nested_items_to_be_public = false
   shared_access_key_enabled       = false
 
-  tags = {
-    environment = "production"
+  tags = local.common_tags
+
+  blob_properties {
+    delete_retention_policy {
+      days = 7
+    }
+
+    container_delete_retention_policy {
+      days = 7
+    }
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
