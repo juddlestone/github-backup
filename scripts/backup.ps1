@@ -3,8 +3,6 @@ function Backup-GithubRepositories {
     Param (
         [Parameter(Mandatory=$true)]
         [string]$StorageAccountName,
-        [Parameter(Mandatory=$true)]
-        [string]$GithubToken
     )
 
 
@@ -31,7 +29,7 @@ function Backup-GithubRepositories {
 
     # Login to GitHub CLI
     Write-Output "Logging into GitHub CLI"
-    gh auth login --with-token < $GithubToken
+    gh auth login --with-token
     Write-Output "Success! Logged into GitHub CLI."
 
 

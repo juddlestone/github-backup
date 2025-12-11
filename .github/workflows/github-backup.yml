@@ -35,6 +35,6 @@ jobs:
         shell: pwsh
         run: |
           . ./scripts/backup.ps1
-          Backup-GithubRepositories -StorageAccountName "${{ secrets.STORAGE_ACCOUNT_NAME }}" -GithubToken "${{ secrets.BACKUP_TOKEN }}"
+          Backup-GithubRepositories -StorageAccountName "${{ secrets.STORAGE_ACCOUNT_NAME }}"
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BACKUP_TOKEN }}
