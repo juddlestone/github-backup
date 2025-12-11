@@ -7,26 +7,19 @@ This repository contains the infrastructure and application code to automaticall
 
 | Repository | Size | Status |
 |------------|------|--------|
-| github-backup | 0.01 MB | ✅ Success |
 | project-onboarder | 0.17 MB | ✅ Success |
+| github-backup | 0.01 MB | ✅ Success |
 | hello.itsjack | 0 MB | ✅ Success |
 | resume.itsjack | 0.19 MB | ✅ Success |
-| cloudpizzaco | 0 MB | ✅ Success |
-| vegas | 2.54 MB | ✅ Success |
 | rag-postgres-openai-python | 4.31 MB | ✅ Success |
 | azfw-report | 0.01 MB | ✅ Success |
 | self-hosted-runners | 0 MB | ✅ Success |
-| powershell | 0 MB | ✅ Success |
 | juddlestone.github | 1.11 MB | ✅ Success |
 | resource-graph-queries | 0.02 MB | ✅ Success |
 | azure-container-registry | 0 MB | ✅ Success |
 | juddlestone | 0 MB | ✅ Success |
-| oncall | 0.01 MB | ✅ Success |
 | study-notes-azure | 0 MB | ✅ Success |
-| study-notes-terraform | 0.01 MB | ✅ Success |
-| azure-pipeline-templates | 0 MB | ⚠️ Empty |
 | itsjack | 0.12 MB | ✅ Success |
-| golfbooker | 0 MB | ✅ Success |
 | otfencing | 12.04 MB | ✅ Success |
 | poster | 0.03 MB | ✅ Success |
 | xrp_bot | 0 MB | ✅ Success |
