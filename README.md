@@ -3,14 +3,16 @@ This repository contains the infrastructure and application code to automaticall
 
 ## Latest Backup Status
 
-**Last Run**: 2026-02-01
+**Last Run**: 2026-03-01
 
 | Repository | Size | Status |
 |------------|------|--------|
-| github-backup | 0.01 MB | ✅ Success |
+| customer-api-testing | 0.06 MB | ✅ Success |
+| accountability | 0.03 MB | ✅ Success |
 | shared-services | 0 MB | ✅ Success |
-| studying-fastapi | 0 MB | ✅ Success |
 | project-onboarder | 0.17 MB | ✅ Success |
+| github-backup | 0.01 MB | ✅ Success |
+| studying-fastapi | 0 MB | ✅ Success |
 | entra-spn-vending | 0 MB | ✅ Success |
 | hello.itsjack | 0 MB | ✅ Success |
 | resume.itsjack | 0.19 MB | ✅ Success |
@@ -19,7 +21,6 @@ This repository contains the infrastructure and application code to automaticall
 | self-hosted-runners | 0 MB | ✅ Success |
 | juddlestone.github | 1.11 MB | ✅ Success |
 | resource-graph-queries | 0.02 MB | ✅ Success |
-| azure-container-registry | 0 MB | ✅ Success |
 | juddlestone | 0 MB | ✅ Success |
 | study-notes-azure | 0 MB | ✅ Success |
 | itsjack | 0.12 MB | ✅ Success |
