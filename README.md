@@ -1,12 +1,42 @@
 # Github Backup
-This repository contains infrastructure and application code to automatically backup my GitHub repositories to Azure Storage. It provides automated monthly backups, each backup is stored as a compressed archive with retention policies and lifecycle management.
+This repository contains the infrastructure and application code to automatically backup my GitHub repositories every month in a simple manner, and store them in an Azure Storage Account. 
+
+## Latest Backup Status
+
+**Last Run**: 2026-04-01
+
+| Repository | Size | Status |
+|------------|------|--------|
+| hello-itsjack-cloud | 1.66 MB | ✅ Success |
+| project-onboarder | 0.17 MB | ✅ Success |
+| terraform-azure-focus | 0.53 MB | ✅ Success |
+| github-backup | 0.01 MB | ✅ Success |
+| customer-api-testing | 0.06 MB | ✅ Success |
+| accountability | 0.03 MB | ✅ Success |
+| shared-services | 0 MB | ✅ Success |
+| studying-fastapi | 0 MB | ✅ Success |
+| entra-spn-vending | 0 MB | ✅ Success |
+| hello.itsjack | 0 MB | ✅ Success |
+| resume.itsjack | 0.19 MB | ✅ Success |
+| building-generative-ai-services | 0.72 MB | ✅ Success |
+| rag-postgres-openai-python | 4.31 MB | ✅ Success |
+| azfw-report | 0.01 MB | ✅ Success |
+| self-hosted-runners | 0 MB | ✅ Success |
+| juddlestone.github | 1.11 MB | ✅ Success |
+| resource-graph-queries | 0.02 MB | ✅ Success |
+| juddlestone | 0 MB | ✅ Success |
+| study-notes-azure | 0 MB | ✅ Success |
+| itsjack | 0.12 MB | ✅ Success |
+| otfencing | 12.04 MB | ✅ Success |
+| poster | 0.03 MB | ✅ Success |
+| xrp_bot | 0 MB | ✅ Success |
 
 ## Infrastructure
 
-The Terraform configuration deploys the following Azure resources:
+I've deployed a three resources via terraform to facilitate this.
 
 ### Storage Account
-- **Name**: Generated using Azure naming conventions 
+- **Name**: Generated using the Azure naming module. 
 - **Tier**: Standard with Zone-Redundant Storage (ZRS)
 - **Security**: Public access disabled, shared access keys disabled
 - **Retention**: 7-day soft delete for blobs and containers
@@ -24,7 +54,7 @@ The Terraform configuration deploys the following Azure resources:
 ## How It Works
 
 ### Workflow Schedule
-The backup process runs automatically on the first of every month at midnight via GitHub Actions. It can also be triggered manually via workflow dispatch.
+The backup process runs automatically at midnight on the first of every month through the `github-backup.yml` workflow. Backups can also be triggered ad-hoc via workflow dispatch.
 
 ### Backup Process
 
@@ -36,46 +66,3 @@ The backup process runs automatically on the first of every month at midnight vi
    - Compressed into a ZIP archive
    - Uploaded to Azure Blob Storage
 5. **Cleanup**: Temporary directories are removed after successful upload
-
-### Storage Structure
-```
-Storage Account
-└── Container (2025-11-01)
-    ├── repo1.zip
-    ├── repo2.zip
-    └── repo3.zip
-└── Container (2025-12-01)
-    ├── repo1.zip
-    ├── repo2.zip
-    └── repo3.zip
-```
-
-## Latest Backup Status
-
-**Last Run**: 2025-12-11
-
-| Repository | Size | Status |
-|------------|------|--------|
-| github-backup | 0 MB | ✅ Success |
-| project-onboarder | 0.17 MB | ✅ Success |
-| hello.itsjack | 0 MB | ✅ Success |
-| resume.itsjack | 0.19 MB | ✅ Success |
-| cloudpizzaco | 0 MB | ✅ Success |
-| vegas | 2.54 MB | ✅ Success |
-| rag-postgres-openai-python | 4.31 MB | ✅ Success |
-| azfw-report | 0.01 MB | ✅ Success |
-| self-hosted-runners | 0 MB | ✅ Success |
-| powershell | 0 MB | ✅ Success |
-| juddlestone.github | 1.11 MB | ✅ Success |
-| resource-graph-queries | 0.02 MB | ✅ Success |
-| azure-container-registry | 0 MB | ✅ Success |
-| juddlestone | 0 MB | ✅ Success |
-| oncall | 0.01 MB | ✅ Success |
-| study-notes-azure | 0 MB | ✅ Success |
-| study-notes-terraform | 0.01 MB | ✅ Success |
-| azure-pipeline-templates | 0 MB | ⚠️ Empty |
-| itsjack | 0.12 MB | ✅ Success |
-| golfbooker | 0 MB | ✅ Success |
-| otfencing | 12.04 MB | ✅ Success |
-| poster | 0.03 MB | ✅ Success |
-| xrp_bot | 0 MB | ✅ Success |
