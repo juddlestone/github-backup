@@ -3,10 +3,13 @@ This repository contains the infrastructure and application code to automaticall
 
 ## Latest Backup Status
 
-**Last Run**: 2026-05-01
+**Last Run**: 2026-06-01
 
 | Repository | Size | Status |
 |------------|------|--------|
+| mapout | 0 MB | ⚠️ Empty |
+| cloud-pizza-co | 0 MB | ⚠️ Empty |
+| github-backup | 0.01 MB | ✅ Success |
 | progress | 0 MB | ✅ Success |
 | dotfile | 0 MB | ✅ Success |
 | hello-itsjack-cloud | 1.66 MB | ✅ Success |
@@ -15,11 +18,9 @@ This repository contains the infrastructure and application code to automaticall
 | fiesta | 0.05 MB | ✅ Success |
 | project-onboarder | 0.17 MB | ✅ Success |
 | juddlestone | 0 MB | ✅ Success |
-| cloud-pizza-co | 0.05 MB | ✅ Success |
 | studying-foundry | 0 MB | ✅ Success |
 | platform-policy | 0 MB | ✅ Success |
 | shared-services | 0 MB | ✅ Success |
-| github-backup | 0.01 MB | ✅ Success |
 | azure-sre-agent-demo | 0.02 MB | ✅ Success |
 | terraform-azure-focus | 0.53 MB | ✅ Success |
 | accountability | 0.03 MB | ✅ Success |
