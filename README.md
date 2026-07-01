@@ -3,13 +3,14 @@ This repository contains the infrastructure and application code to automaticall
 
 ## Latest Backup Status
 
-**Last Run**: 2026-06-01
+**Last Run**: 2026-07-01
 
 | Repository | Size | Status |
 |------------|------|--------|
+| kit-and-coast | 0 MB | ⚠️ Empty |
+| github-backup | 0.01 MB | ✅ Success |
 | mapout | 0 MB | ⚠️ Empty |
 | cloud-pizza-co | 0 MB | ⚠️ Empty |
-| github-backup | 0.01 MB | ✅ Success |
 | progress | 0 MB | ✅ Success |
 | dotfile | 0 MB | ✅ Success |
 | hello-itsjack-cloud | 1.66 MB | ✅ Success |
@@ -27,16 +28,15 @@ This repository contains the infrastructure and application code to automaticall
 | studying-fastapi | 0 MB | ✅ Success |
 | resume.itsjack | 0.19 MB | ✅ Success |
 | building-generative-ai-services | 0.72 MB | ✅ Success |
-| rag-postgres-openai-python | 4.31 MB | ✅ Success |
+| rag-postgres-openai-python | 4.27 MB | ✅ Success |
 | azfw-report | 0.01 MB | ✅ Success |
 | self-hosted-runners | 0 MB | ✅ Success |
 | juddlestone.github | 1.11 MB | ✅ Success |
 | resource-graph-queries | 0.02 MB | ✅ Success |
 | study-notes-azure | 0 MB | ✅ Success |
 | itsjack | 0.12 MB | ✅ Success |
-| otfencing | 12.04 MB | ✅ Success |
+| otfencing | 12.05 MB | ✅ Success |
 | poster | 0.03 MB | ✅ Success |
-| xrp_bot | 0 MB | ✅ Success |
 
 ## Infrastructure
 
