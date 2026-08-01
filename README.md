@@ -3,22 +3,20 @@ This repository contains the infrastructure and application code to automaticall
 
 ## Latest Backup Status
 
-**Last Run**: 2026-07-01
+**Last Run**: 2026-08-01
 
 | Repository | Size | Status |
 |------------|------|--------|
-| kit-and-coast | 0 MB | ⚠️ Empty |
+| kit-and-coast | 0.2 MB | ✅ Success |
+| juddlestone | 0 MB | ✅ Success |
 | github-backup | 0.01 MB | ✅ Success |
-| mapout | 0 MB | ⚠️ Empty |
 | cloud-pizza-co | 0 MB | ⚠️ Empty |
-| progress | 0 MB | ✅ Success |
 | dotfile | 0 MB | ✅ Success |
 | hello-itsjack-cloud | 1.66 MB | ✅ Success |
 | maester | 0 MB | ⚠️ Empty |
 | sandbox | 0.01 MB | ✅ Success |
 | fiesta | 0.05 MB | ✅ Success |
 | project-onboarder | 0.17 MB | ✅ Success |
-| juddlestone | 0 MB | ✅ Success |
 | studying-foundry | 0 MB | ✅ Success |
 | platform-policy | 0 MB | ✅ Success |
 | shared-services | 0 MB | ✅ Success |
@@ -37,6 +35,7 @@ This repository contains the infrastructure and application code to automaticall
 | itsjack | 0.12 MB | ✅ Success |
 | otfencing | 12.05 MB | ✅ Success |
 | poster | 0.03 MB | ✅ Success |
+| xrp_bot | 0 MB | ✅ Success |
 
 ## Infrastructure
 
