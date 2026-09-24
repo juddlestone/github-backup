@@ -3,39 +3,20 @@ This repository contains the infrastructure and application code to automaticall
 
 ## Latest Backup Status
 
-**Last Run**: 2026-08-01
+**Last Run**: 2026-09-24
 
 | Repository | Size | Status |
 |------------|------|--------|
-| kit-and-coast | 0.2 MB | ✅ Success |
-| juddlestone | 0 MB | ✅ Success |
-| github-backup | 0.01 MB | ✅ Success |
-| cloud-pizza-co | 0 MB | ⚠️ Empty |
-| dotfile | 0 MB | ✅ Success |
 | hello-itsjack-cloud | 1.66 MB | ✅ Success |
-| maester | 0 MB | ⚠️ Empty |
-| sandbox | 0.01 MB | ✅ Success |
-| fiesta | 0.05 MB | ✅ Success |
+| github-backup | 0.01 MB | ✅ Success |
+| juddlestone | 0 MB | ✅ Success |
 | project-onboarder | 0.17 MB | ✅ Success |
-| studying-foundry | 0 MB | ✅ Success |
-| platform-policy | 0 MB | ✅ Success |
-| shared-services | 0 MB | ✅ Success |
-| azure-sre-agent-demo | 0.02 MB | ✅ Success |
 | terraform-azure-focus | 0.53 MB | ✅ Success |
-| accountability | 0.03 MB | ✅ Success |
-| studying-fastapi | 0 MB | ✅ Success |
 | resume.itsjack | 0.19 MB | ✅ Success |
 | building-generative-ai-services | 0.72 MB | ✅ Success |
 | rag-postgres-openai-python | 4.27 MB | ✅ Success |
-| azfw-report | 0.01 MB | ✅ Success |
-| self-hosted-runners | 0 MB | ✅ Success |
 | juddlestone.github | 1.11 MB | ✅ Success |
 | resource-graph-queries | 0.02 MB | ✅ Success |
-| study-notes-azure | 0 MB | ✅ Success |
-| itsjack | 0.12 MB | ✅ Success |
-| otfencing | 12.05 MB | ✅ Success |
-| poster | 0.03 MB | ✅ Success |
-| xrp_bot | 0 MB | ✅ Success |
 
 ## Infrastructure
 
